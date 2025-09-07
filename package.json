@@ -11,7 +11,8 @@
     "dev:web": "npm --workspace web run dev",
     "dev:backend": "npm --workspace backend run dev",
     "dev:mobile": "npm --workspace mobile run start",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:web\""
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:web\"",
+    "dev:migrate:prisma": "npx prisma migrate dev --schema=./prisma/schema.prisma"
   },
   "repository": {
     "type": "git",

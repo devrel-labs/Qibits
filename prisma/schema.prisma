@@ -12,3 +12,76 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id         String       @id @default(uuid())
+  email      String       @unique
+  password   String
+  firstName  String
+  lastName   String?
+  DOB        DateTime
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  messages   Message[]
+  sessions   Session[]
+  Chat       Chat[]
+  ChatMember ChatMember[]
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  chatId    String
+  userId    String
+  content   String
+  timestamp DateTime @default(now())
+  uesr      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  chat      Chat     @relation(fields: [chatId], references: [id])
+}
+
+model Chat {
+  id        String       @id @default(uuid())
+  name      String
+  isGroup   Boolean      @default(false)
+  userId    String
+  message   String
+  timestamp DateTime     @default(now())
+  user      User         @relation(fields: [userId], references: [id])
+  messages  Message[]
+  members   ChatMember[]
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  sessions  Session[]
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  userId       String
+  token        String   @unique
+  RefreshToken String   @unique
+  expiresAt    DateTime
+  user         User     @relation(fields: [userId], references: [id])
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  chats        Chat[]
+}
+
+model ChatMember {
+  id        String   @id @default(uuid())
+  userId    String
+  chatId    String
+  user      User     @relation(fields: [userId], references: [id])
+  chat      Chat     @relation(fields: [chatId], references: [id])
+  joinedAt  DateTime @default(now())
+  role      Role     @default(MEMBER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+  GUEST
+  MODEREATOR
+}
