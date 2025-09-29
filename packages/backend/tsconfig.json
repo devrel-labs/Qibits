@@ -3,7 +3,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     // File Layout
-    "rootDir": "./src",
+    "rootDir": "./",
     "outDir": "./dist",
 
     // Environment Settings
@@ -42,5 +42,5 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
   },
-  "include": ["src"]
+  // "include": ["src"]
 }
