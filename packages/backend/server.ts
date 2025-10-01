@@ -26,12 +26,8 @@ if (fs.existsSync(routesDir)) {
     const routeURL = url.pathToFileURL(routePath).href;
     const routerFile = await import(routeURL);
     
-    console.log(`Imported ${file}:`, routerFile); // Debug log
-    
     // Handle different export formats
     const routeExport = routerFile.default || routerFile;
-    
-    console.log(`Route export:`, routeExport); // Debug log
     
     if (Array.isArray(routeExport)) {
       routes.push(...routeExport);
