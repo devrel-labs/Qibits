@@ -27,7 +27,10 @@
   "homepage": "https://github.com/devrel-labs/Qibits#readme",
   "dependencies": {
     "@prisma/client": "^6.15.0",
-    "prisma": "^6.15.0"
+    "@types/dotenv": "^6.1.1",
+    "dotenv": "^17.2.2",
+    "prisma": "^6.15.0",
+    "ws": "^8.18.3"
   },
   "devDependencies": {
     "concurrently": "^9.2.1",

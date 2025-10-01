@@ -46,5 +46,6 @@
     "paths": {
       "@qibits/shared/*": ["packages/shared/src/*"]
     }
-  }
+  },
+  "include": ["packages", "types", "config", "scripts"]
 }
